@@ -1,0 +1,63 @@
+{
+  "name": "moti-sanjay-portfolio",
+  "version": "1.0.0",
+  "description": "Personal portfolio website of Moti Sanjay - Full Stack Developer showcasing skills, projects, and experience - CODSOFT Task 2",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx http-server -p 8000 -o",
+    "dev": "npx live-server --port=8000 --open=/index.html",
+    "build": "npm run optimize",
+    "optimize": "npm run optimize:css && npm run optimize:js && npm run optimize:images",
+    "optimize:css": "echo 'CSS optimization - add your preferred tool'",
+    "optimize:js": "echo 'JS optimization - add your preferred tool'",
+    "optimize:images": "echo 'Image optimization - add your preferred tool'",
+    "test": "npm run validate:html && npm run validate:css",
+    "validate:html": "echo 'HTML validation - add your preferred tool'",
+    "validate:css": "echo 'CSS validation - add your preferred tool'",
+    "deploy": "echo 'Add your deployment script here'",
+    "lighthouse": "npx lighthouse http://localhost:8000 --output=html --output-path=./lighthouse-report.html"
+  },
+  "keywords": [
+    "portfolio",
+    "personal-website",
+    "responsive",
+    "html5",
+    "css3",
+    "javascript",
+    "codsoft",
+    "internship",
+    "web-development",
+    "frontend",
+    "dark-theme",
+    "animations",
+    "modern-design"
+  ],
+  "author": {
+    "name": "John Doe",
+    "email": "john.doe@email.com",
+    "url": "https://johndoe.dev"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/CODSOFT.git",
+    "directory": "Task2-Portfolio-Website"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/CODSOFT/issues"
+  },
+  "homepage": "https://yourusername.github.io/CODSOFT/Task2-Portfolio-Website/",
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "lighthouse": "^10.4.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  }
+}

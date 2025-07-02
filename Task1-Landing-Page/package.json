@@ -1,0 +1,37 @@
+{
+  "name": "creative-digital-agency-landing-page",
+  "version": "1.0.0",
+  "description": "A modern, responsive landing page for a creative digital agency - CODSOFT Task 1",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx http-server -p 8000 -o",
+    "dev": "npx live-server --port=8000 --open=/index.html",
+    "build": "echo 'No build process needed for static site'",
+    "test": "echo 'No tests specified'"
+  },
+  "keywords": [
+    "landing-page",
+    "responsive",
+    "html",
+    "css",
+    "javascript",
+    "codsoft",
+    "internship",
+    "web-development",
+    "frontend",
+    "digital-agency"
+  ],
+  "author": "CODSOFT Intern",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/CODSOFT.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/CODSOFT/issues"
+  },
+  "homepage": "https://github.com/yourusername/CODSOFT#readme",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
