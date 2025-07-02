@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator - CODSOFT Task 3 | Moti Sanjay</title>
+    <meta name="description" content="Modern calculator application built with HTML, CSS, and JavaScript as part of CODSOFT Web Development Internship Task 3.">
+    <meta name="keywords" content="calculator, javascript, codsoft, web development, moti sanjay, internship">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/calculator-favicon.svg">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Fallback CSS for critical path -->
+    <style>
+        /* Critical CSS fallback */
+        * { box-sizing: border-box; }
+        body { 
+            margin: 0; 
+            font-family: 'Inter', Arial, sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .calculator { 
+            background: rgba(255, 255, 255, 0.95); 
+            border-radius: 20px; 
+            padding: 1.5rem; 
+            max-width: 400px; 
+            margin: 2rem auto;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        .display { 
+            background: #1a1a1a; 
+            color: #00ff88; 
+            padding: 1.5rem; 
+            border-radius: 12px; 
+            text-align: right; 
+            margin-bottom: 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2rem;
+            min-height: 80px;
+        }
+        .buttons-grid { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 0.8rem; 
+        }
+        .btn { 
+            background: #f0f0f0; 
+            border: none; 
+            border-radius: 12px; 
+            padding: 1rem; 
+            font-size: 1.1rem; 
+            cursor: pointer;
+            min-height: 60px;
+            transition: all 0.2s ease;
+        }
+        .btn:hover { transform: translateY(-2px); }
+        .btn-operation { background: linear-gradient(145deg, #667eea, #5a6fd8); color: white; }
+        .btn-equals { background: linear-gradient(145deg, #00d2ff, #3a7bd5); color: white; grid-column: span 2; }
+        .btn-clear { background: linear-gradient(145deg, #ff6b6b, #ee5a24); color: white; }
+        .header { background: rgba(255, 255, 255, 0.1); padding: 1rem 0; margin-bottom: 2rem; }
+        .header-content { display: flex; justify-content: space-between; align-items: center; color: white; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-calculator"></i>
+                    <h1>Calculator</h1>
+                </div>
+                <div class="task-info">
+                    <span class="task-badge">CODSOFT Task 3</span>
+                    <span class="developer">by Moti Sanjay</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <div class="calculator-container">
+                <div class="calculator" id="calculator">
+                    <!-- Display Section -->
+                    <div class="display-container">
+                        <div class="display">
+                            <div class="display-history" id="history"></div>
+                            <div class="display-current" id="current-display">0</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Buttons Grid -->
+                    <div class="buttons-grid">
+                        <!-- Row 1: Clear, Clear Entry, Percentage, Divide -->
+                        <button class="btn btn-clear" id="clear-all" data-action="clear-all">
+                            <i class="fas fa-trash"></i>
+                            <span>AC</span>
+                        </button>
+                        <button class="btn btn-clear" id="clear-entry" data-action="clear-entry">
+                            <i class="fas fa-backspace"></i>
+                            <span>CE</span>
+                        </button>
+                        <button class="btn btn-operation" data-action="operation" data-operation="percentage">
+                            <i class="fas fa-percentage"></i>
+                            <span>%</span>
+                        </button>
+                        <button class="btn btn-operation" data-action="operation" data-operation="divide">
+                            <i class="fas fa-divide"></i>
+                            <span>÷</span>
+                        </button>
+                        
+                        <!-- Row 2: Numbers 7-9 and Multiply -->
+                        <button class="btn btn-number" data-action="number" data-number="7">
+                            <span>7</span>
+                        </button>
+                        <button class="btn btn-number" data-action="number" data-number="8">
+                            <span>8</span>
+                        </button>
+                        <button class="btn btn-number" data-action="number" data-number="9">
+                            <span>9</span>
+                        </button>
+                        <button class="btn btn-operation" data-action="operation" data-operation="multiply">
+                            <i class="fas fa-times"></i>
+                            <span>×</span>
+                        </button>
+                        
+                        <!-- Row 3: Numbers 4-6 and Subtract -->
+                        <button class="btn btn-number" data-action="number" data-number="4">
+                            <span>4</span>
+                        </button>
+                        <button class="btn btn-number" data-action="number" data-number="5">
+                            <span>5</span>
+                        </button>
+                        <button class="btn btn-number" data-action="number" data-number="6">
+                            <span>6</span>
+                        </button>
+                        <button class="btn btn-operation" data-action="operation" data-operation="subtract">
+                            <i class="fas fa-minus"></i>
+                            <span>−</span>
+                        </button>
+                        
+                        <!-- Row 4: Numbers 1-3 and Add -->
+                        <button class="btn btn-number" data-action="number" data-number="1">
+                            <span>1</span>
+                        </button>
+                        <button class="btn btn-number" data-action="number" data-number="2">
+                            <span>2</span>
+                        </button>
+                        <button class="btn btn-number" data-action="number" data-number="3">
+                            <span>3</span>
+                        </button>
+                        <button class="btn btn-operation" data-action="operation" data-operation="add">
+                            <i class="fas fa-plus"></i>
+                            <span>+</span>
+                        </button>
+                        
+                        <!-- Row 5: Zero, Decimal and Equals -->
+                        <button class="btn btn-number btn-zero" data-action="number" data-number="0">
+                            <span>0</span>
+                        </button>
+                        <button class="btn btn-decimal" data-action="decimal">
+                            <i class="fas fa-circle"></i>
+                            <span>.</span>
+                        </button>
+                        <button class="btn btn-equals" data-action="calculate">
+                            <i class="fas fa-equals"></i>
+                            <span>=</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Calculator Info -->
+                <div class="calculator-info">
+                    <div class="info-card">
+                        <h3>Features</h3>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Basic arithmetic operations</li>
+                            <li><i class="fas fa-check"></i> Keyboard support</li>
+                            <li><i class="fas fa-check"></i> History tracking</li>
+                            <li><i class="fas fa-check"></i> Error handling</li>
+                            <li><i class="fas fa-check"></i> Responsive design</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>Keyboard Shortcuts</h3>
+                        <div class="shortcuts">
+                            <div class="shortcut">
+                                <kbd>0-9</kbd>
+                                <span>Numbers</span>
+                            </div>
+                            <div class="shortcut">
+                                <kbd>+ - * /</kbd>
+                                <span>Operations</span>
+                            </div>
+                            <div class="shortcut">
+                                <kbd>Enter</kbd>
+                                <span>Calculate</span>
+                            </div>
+                            <div class="shortcut">
+                                <kbd>Escape</kbd>
+                                <span>Clear</span>
+                            </div>
+                            <div class="shortcut">
+                                <kbd>Backspace</kbd>
+                                <span>Delete</span>
+                            </div>
+                            <div class="shortcut">
+                                <kbd>.</kbd>
+                                <span>Decimal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-text">
+                    <p>&copy; 2025 Moti Sanjay. Calculator - CODSOFT Task 3</p>
+                    <p>Built with <i class="fas fa-heart"></i> during CODSOFT Web Development Internship | #codsoft</p>
+                </div>
+                <div class="footer-links">
+                    <a href="../Task1-Landing-Page/" class="footer-link">
+                        <i class="fas fa-globe"></i>
+                        <span>Task 1: Landing Page</span>
+                    </a>
+                    <a href="../Task2-Portfolio-Website/" class="footer-link">
+                        <i class="fas fa-user"></i>
+                        <span>Task 2: Portfolio</span>
+                    </a>
+                    <a href="https://github.com/sanjayrockerz/CODSOFT" target="_blank" class="footer-link">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub Repository</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Error Modal -->
+    <div class="modal" id="error-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h3>Calculation Error</h3>
+            </div>
+            <div class="modal-body">
+                <p id="error-message">An error occurred during calculation.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="close-modal">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Debug loading
+        console.log('🧮 Calculator HTML loaded');
+        console.log('📅 Date:', new Date().toISOString());
+        console.log('🔗 Current URL:', window.location.href);
+        
+        // Check if CSS loaded
+        window.addEventListener('load', () => {
+            const calculator = document.querySelector('.calculator');
+            if (calculator) {
+                const styles = window.getComputedStyle(calculator);
+                console.log('🎨 CSS loaded:', styles.backgroundColor !== 'rgba(0, 0, 0, 0)');
+            }
+        });
+    </script>
+    <script src="js/calculator.js"></script>
+    <script src="js/keyboard.js"></script>
+    <script src="js/animations.js"></script>
+</body>
+</html>
