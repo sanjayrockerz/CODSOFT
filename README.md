@@ -160,8 +160,8 @@ Each project includes video demonstrations showcasing:
 ## 📧 Contact Information
 
 **Email:** moti.sanjay@email.com  
-**LinkedIn:** [Your LinkedIn Profile]  
-**GitHub:** [Your GitHub Profile]  
+**LinkedIn:** [Moti Sanjay LinkedIn](https://linkedin.com/in/moti-sanjay)  
+**GitHub:** [sanjayrockerz](https://github.com/sanjayrockerz)  
 **Phone:** +1 (555) 123-4567
 
 ## 🔗 Quick Links
