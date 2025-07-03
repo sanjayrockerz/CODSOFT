@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator Debug</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Calculator Debug Test</h1>
+        
+        <div id="css-test" class="status info">Testing CSS...</div>
+        <div id="js-test" class="status info">Testing JavaScript...</div>
+        <div id="dom-test" class="status info">Testing DOM...</div>
+        
+        <h2>Basic Calculator Test</h2>
+        <div style="background: #667eea; color: white; padding: 20px; border-radius: 10px; text-align: center;">
+            <div style="background: #1a1a1a; color: #00ff88; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 24px; margin-bottom: 15px;">
+                <div id="test-display">0</div>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+                <button onclick="testCalc('C')" style="padding: 15px; border: none; border-radius: 8px; background: #ff6b6b; color: white; font-size: 16px; cursor: pointer;">C</button>
+                <button onclick="testCalc('CE')" style="padding: 15px; border: none; border-radius: 8px; background: #ff6b6b; color: white; font-size: 16px; cursor: pointer;">CE</button>
+                <button onclick="testCalc('%')" style="padding: 15px; border: none; border-radius: 8px; background: #667eea; color: white; font-size: 16px; cursor: pointer;">%</button>
+                <button onclick="testCalc('/')" style="padding: 15px; border: none; border-radius: 8px; background: #667eea; color: white; font-size: 16px; cursor: pointer;">÷</button>
+                
+                <button onclick="testCalc('7')" style="padding: 15px; border: none; border-radius: 8px; background: white; color: #333; font-size: 16px; cursor: pointer;">7</button>
+                <button onclick="testCalc('8')" style="padding: 15px; border: none; border-radius: 8px; background: white; color: #333; font-size: 16px; cursor: pointer;">8</button>
+                <button onclick="testCalc('9')" style="padding: 15px; border: none; border-radius: 8px; background: white; color: #333; font-size: 16px; cursor: pointer;">9</button>
+                <button onclick="testCalc('*')" style="padding: 15px; border: none; border-radius: 8px; background: #667eea; color: white; font-size: 16px; cursor: pointer;">×</button>
+                
+                <button onclick="testCalc('4')" style="padding: 15px; border: none; border-radius: 8px; background: white; color: #333; font-size: 16px; cursor: pointer;">4</button>
+                <button onclick="testCalc('5')" style="padding: 15px; border: none; border-radius: 8px; background: white; color: #333; font-size: 16px; cursor: pointer;">5</button>
+                <button onclick="testCalc('6')" style="padding: 15px; border: none; border-radius: 8px; background: white; color: #333; font-size: 16px; cursor: pointer;">6</button>
+                <button onclick="testCalc('-')" style="padding: 15px; border: none; border-radius: 8px; background: #667eea; color: white; font-size: 16px; cursor: pointer;">−</button>
+                
+                <button onclick="testCalc('1')" style="padding: 15px; border: none; border-radius: 8px; background: white; color: #333; font-size: 16px; cursor: pointer;">1</button>
+                <button onclick="testCalc('2')" style="padding: 15px; border: none; border-radius: 8px; background: white; color: #333; font-size: 16px; cursor: pointer;">2</button>
+                <button onclick="testCalc('3')" style="padding: 15px; border: none; border-radius: 8px; background: white; color: #333; font-size: 16px; cursor: pointer;">3</button>
+                <button onclick="testCalc('+')" style="padding: 15px; border: none; border-radius: 8px; background: #667eea; color: white; font-size: 16px; cursor: pointer;">+</button>
+                
+                <button onclick="testCalc('0')" style="padding: 15px; border: none; border-radius: 8px; background: white; color: #333; font-size: 16px; cursor: pointer; grid-column: span 2;">0</button>
+                <button onclick="testCalc('.')" style="padding: 15px; border: none; border-radius: 8px; background: #feca57; color: white; font-size: 16px; cursor: pointer;">.</button>
+                <button onclick="testCalc('=')" style="padding: 15px; border: none; border-radius: 8px; background: #00d2ff; color: white; font-size: 16px; cursor: pointer;">=</button>
+            </div>
+        </div>
+        
+        <div style="margin-top: 20px;">
+            <a href="index.html" style="display: inline-block; padding: 10px 20px; background: #667eea; color: white; text-decoration: none; border-radius: 5px;">Go to Main Calculator</a>
+        </div>
+    </div>
+
+    <script>
+        // Debug tests
+        document.addEventListener('DOMContentLoaded', function() {
+            // Test CSS
+            const cssTest = document.getElementById('css-test');
+            cssTest.textContent = 'CSS: Working ✓';
+            cssTest.className = 'status success';
+            
+            // Test JavaScript
+            const jsTest = document.getElementById('js-test');
+            jsTest.textContent = 'JavaScript: Working ✓';
+            jsTest.className = 'status success';
+            
+            // Test DOM
+            const domTest = document.getElementById('dom-test');
+            domTest.textContent = 'DOM: Ready ✓';
+            domTest.className = 'status success';
+            
+            console.log('🧮 Debug calculator loaded successfully!');
+        });
+        
+        // Simple calculator for testing
+        let display = '0';
+        let firstNumber = null;
+        let operation = null;
+        let waitingForNumber = false;
+        
+        function testCalc(input) {
+            const displayElement = document.getElementById('test-display');
+            
+            if (input >= '0' && input <= '9') {
+                if (waitingForNumber || display === '0') {
+                    display = input;
+                    waitingForNumber = false;
+                } else {
+                    display += input;
+                }
+            } else if (input === '.') {
+                if (display.indexOf('.') === -1) {
+                    display += '.';
+                }
+            } else if (['+', '-', '*', '/'].includes(input)) {
+                if (firstNumber === null) {
+                    firstNumber = parseFloat(display);
+                } else if (operation && !waitingForNumber) {
+                    const result = calculate(firstNumber, parseFloat(display), operation);
+                    display = String(result);
+                    firstNumber = result;
+                }
+                operation = input;
+                waitingForNumber = true;
+            } else if (input === '=') {
+                if (operation && firstNumber !== null) {
+                    const result = calculate(firstNumber, parseFloat(display), operation);
+                    display = String(result);
+                    firstNumber = null;
+                    operation = null;
+                    waitingForNumber = true;
+                }
+            } else if (input === 'C') {
+                display = '0';
+                firstNumber = null;
+                operation = null;
+                waitingForNumber = false;
+            } else if (input === 'CE') {
+                display = '0';
+            }
+            
+            displayElement.textContent = display;
+        }
+        
+        function calculate(a, b, op) {
+            switch(op) {
+                case '+': return a + b;
+                case '-': return a - b;
+                case '*': return a * b;
+                case '/': return b !== 0 ? a / b : 0;
+                default: return b;
+            }
+        }
+    </script>
+</body>
+</html>
