@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Moti Sanjay M — Resume</title>
+  <style>
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Fonts ── */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    /* ── Screen wrapper ── */
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0a0a0f;
+      color: #f1f5f9;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px 48px;
+    }
+
+    /* ── Action bar (hidden on print) ── */
+    .action-bar {
+      width: 100%;
+      max-width: 860px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .action-bar span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: #64748b;
+    }
+    .btn-print {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: #06b6d4;
+      color: #0a0a0f;
+      border: none;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      text-decoration: none;
+    }
+    .btn-print:hover  { background: #22d3ee; }
+    .btn-print:active { transform: scale(0.98); }
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 18px;
+      border: 1px solid #1e293b;
+      color: #94a3b8;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      background: transparent;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-back:hover { border-color: #334155; color: #f1f5f9; }
+
+    /* ── Paper ── */
+    .paper {
+      width: 100%;
+      max-width: 860px;
+      background: #ffffff;
+      color: #1e293b;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+    }
+
+    /* ── Header ── */
+    .header {
+      padding: 36px 48px 28px;
+      border-bottom: 2px solid #06b6d4;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #f8fafc;
+    }
+    .header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: #f8fafc;
+      margin-bottom: 6px;
+    }
+    .header .role {
+      font-size: 14px;
+      color: #06b6d4;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 14px;
+    }
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 20px;
+      font-size: 12.5px;
+      color: #94a3b8;
+    }
+    .contact-row a { color: #67e8f9; text-decoration: none; }
+    .contact-row a:hover { text-decoration: underline; }
+    .sep { color: #334155; }
+
+    /* ── Body ── */
+    .body {
+      padding: 32px 48px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* ── Section ── */
+    .section h2 {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #06b6d4;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #e2e8f0;
+      margin-bottom: 14px;
+    }
+
+    /* ── Summary ── */
+    .summary p {
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: #334155;
+    }
+    .summary strong { color: #0f172a; }
+
+    /* ── Education ── */
+    .edu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+    .edu-item:last-child { margin-bottom: 0; }
+    .edu-left .degree {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #0f172a;
+    }
+    .edu-left .school {
+      font-size: 12.5px;
+      color: #475569;
+      margin-top: 1px;
+    }
+    .edu-right {
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .edu-right .year {
+      font-size: 12px;
+      color: #64748b;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .edu-right .cgpa {
+      font-size: 12px;
+      font-weight: 600;
+      color: #06b6d4;
+      margin-top: 2px;
+    }
+
+    /* ── Skills ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px 32px;
+    }
+    .skill-row {
+      display: flex;
+      gap: 6px;
+      font-size: 12.5px;
+      line-height: 1.5;
+    }
+    .skill-row .skill-cat {
+      font-weight: 600;
+      color: #0f172a;
+      white-space: nowrap;
+      min-width: 90px;
+    }
+    .skill-row .skill-val {
+      color: #475569;
+    }
+
+    /* ── Experience / Projects ── */
+    .item {
+      margin-bottom: 16px;
+    }
+    .item:last-child { margin-bottom: 0; }
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 4px;
+    }
+    .item-title {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #0f172a;
+    }
+    .item-meta {
+      font-size: 11.5px;
+      font-family: 'JetBrains Mono', monospace;
+      color: #64748b;
+      flex-shrink: 0;
+    }
+    .item-sub {
+      font-size: 12.5px;
+      color: #475569;
+      margin-bottom: 5px;
+      font-style: italic;
+    }
+    .item ul {
+      list-style: none;
+      padding: 0;
+    }
+    .item ul li {
+      font-size: 12.5px;
+      color: #334155;
+      line-height: 1.6;
+      padding-left: 14px;
+      position: relative;
+      margin-bottom: 2px;
+    }
+    .item ul li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: #06b6d4;
+      font-size: 10px;
+      top: 2px;
+    }
+    .item ul li strong { color: #0f172a; font-weight: 600; }
+
+    /* ── Tags ── */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 6px;
+    }
+    .tag {
+      font-size: 10.5px;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 2px 7px;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      color: #475569;
+    }
+
+    /* ── Achievements ── */
+    .ach-list {
+      list-style: none;
+      padding: 0;
+    }
+    .ach-list li {
+      font-size: 12.5px;
+      color: #334155;
+      line-height: 1.6;
+      padding-left: 14px;
+      position: relative;
+      margin-bottom: 4px;
+    }
+    .ach-list li::before {
+      content: '★';
+      position: absolute;
+      left: 0;
+      color: #f59e0b;
+      font-size: 9px;
+      top: 3px;
+    }
+    .ach-list li strong { color: #0f172a; font-weight: 600; }
+
+    /* ── Footer ── */
+    .paper-footer {
+      background: #f8fafc;
+      border-top: 1px solid #e2e8f0;
+      padding: 12px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: #94a3b8;
+    }
+
+    /* ══════════════════════════════════════
+       PRINT STYLES — keep content on 1 page
+    ══════════════════════════════════════ */
+    @media print {
+      @page {
+        size: A4;
+        margin: 14mm 14mm 12mm;
+      }
+
+      body {
+        background: white;
+        padding: 0;
+        display: block;
+      }
+
+      .action-bar { display: none !important; }
+
+      .paper {
+        box-shadow: none;
+        border-radius: 0;
+        max-width: 100%;
+        width: 100%;
+      }
+
+      .header { padding: 22px 32px 18px; }
+      .header h1 { font-size: 22px; }
+      .body { padding: 22px 32px 28px; gap: 18px; }
+      .paper-footer { padding: 8px 32px; }
+
+      .item { page-break-inside: avoid; }
+      .edu-item { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Action bar ── -->
+  <div class="action-bar">
+    <div style="display:flex; gap:10px; align-items:center;">
+      <a href="/" class="btn-back">
+        ← Portfolio
+      </a>
+      <span>Moti Sanjay M · Resume</span>
+    </div>
+    <button class="btn-print" onclick="window.print()">
+      ⬇ Download / Print PDF
+    </button>
+  </div>
+
+  <!-- ── Paper ── -->
+  <div class="paper">
+
+    <!-- Header -->
+    <div class="header">
+      <h1>MOTI SANJAY M</h1>
+      <div class="role">Full-Stack Engineer · AI/ML · Data Science</div>
+      <div class="contact-row">
+        <span>📍 Chennai, India</span>
+        <span class="sep">|</span>
+        <a href="mailto:motisanjay04@gmail.com">motisanjay04@gmail.com</a>
+        <span class="sep">|</span>
+        <span>+91 86106 32662</span>
+        <span class="sep">|</span>
+        <a href="https://linkedin.com/in/moti-sanjay-m-096010330/" target="_blank">LinkedIn</a>
+        <span class="sep">|</span>
+        <a href="https://github.com/sanjayrockerz" target="_blank">github.com/sanjayrockerz</a>
+        <span class="sep">|</span>
+        <a href="https://leetcode.com/u/sanjay304/" target="_blank">LeetCode</a>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div class="body">
+
+      <!-- Summary -->
+      <div class="section summary">
+        <h2>Profile</h2>
+        <p>
+          <strong>2nd-year B.E. CSE student (RMK Engineering College)</strong> pursuing a simultaneous
+          <strong>B.S. Data Science at IIT Madras</strong>. Delivered a
+          <strong>₹10,000 paid freelance project</strong> (TRA Freight Network, live on Vercel),
+          built production-grade full-stack and AI/ML systems, and solved
+          <strong>230+ LeetCode</strong> problems. Seeking internships in full-stack or
+          ML engineering roles where I can contribute immediately to real products.
+        </p>
+      </div>
+
+      <!-- Education -->
+      <div class="section">
+        <h2>Education</h2>
+
+        <div class="edu-item">
+          <div class="edu-left">
+            <div class="degree">B.E. Computer Science &amp; Engineering</div>
+            <div class="school">R.M.K Engineering College, Chennai — Anna University</div>
+          </div>
+          <div class="edu-right">
+            <div class="year">2024 – 2028</div>
+            <div class="cgpa">CGPA 8.1 / 10</div>
+          </div>
+        </div>
+
+        <div class="edu-item">
+          <div class="edu-left">
+            <div class="degree">B.S. Data Science &amp; Applications <em style="font-weight:400;font-size:12px;color:#64748b"> (ongoing)</em></div>
+            <div class="school">IIT Madras — Online Degree Programme</div>
+          </div>
+          <div class="edu-right">
+            <div class="year">2024 – present</div>
+            <div class="cgpa">CGPA 7.0 / 10</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skills -->
+      <div class="section">
+        <h2>Technical Skills</h2>
+        <div class="skills-grid">
+          <div class="skill-row">
+            <span class="skill-cat">Languages</span>
+            <span class="skill-val">JavaScript, Python, Java, C++, SQL</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-cat">Frontend</span>
+            <span class="skill-val">React.js, Next.js, TypeScript, Tailwind CSS, HTML5/CSS3</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-cat">Backend</span>
+            <span class="skill-val">Node.js, Express.js, FastAPI, REST APIs, JWT Auth</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-cat">AI / ML</span>
+            <span class="skill-val">TensorFlow, Scikit-learn, Pandas, NumPy, OpenCV, Streamlit</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-cat">Databases</span>
+            <span class="skill-val">MongoDB, PostgreSQL, SQL (MySQL)</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-cat">DevOps / Tools</span>
+            <span class="skill-val">Git, GitHub, Vercel, Docker (basics), Postman, Figma</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Experience -->
+      <div class="section">
+        <h2>Experience</h2>
+
+        <div class="item">
+          <div class="item-header">
+            <span class="item-title">Freelance Full-Stack Developer — TRA Freight Network</span>
+            <span class="item-meta">Client Project · ₹10,000 · 2024</span>
+          </div>
+          <div class="item-sub">Logistics SaaS · React · Node.js · Express · MongoDB · Vercel</div>
+          <ul>
+            <li>Designed and built end-to-end <strong>truck-freight logistics platform</strong> connecting transporters and truck owners across India, deployed live at <em>tra-connect.vercel.app</em></li>
+            <li>Implemented <strong>RESTful API backend</strong> with Express + MongoDB for load posting, driver profiles, and route management</li>
+            <li><strong>Sole developer</strong> — handled full product lifecycle from requirements to live deployment, earning ₹10,000 compensation</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Projects -->
+      <div class="section">
+        <h2>Projects</h2>
+
+        <div class="item">
+          <div class="item-header">
+            <span class="item-title">Secure KYC Verification System</span>
+            <span class="item-meta">Live · kyc-verification-bice.vercel.app</span>
+          </div>
+          <ul>
+            <li>Built full-stack <strong>identity verification platform</strong> with document upload, liveness detection mock, and admin review dashboard</li>
+            <li>Secured endpoints with <strong>JWT authentication</strong>; file handling via Multer + Express</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Express</span>
+            <span class="tag">JWT</span><span class="tag">Multer</span><span class="tag">Vercel</span>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-header">
+            <span class="item-title">Smart Cattle Breed Recognition — AI/ML</span>
+            <span class="item-meta">College SIH 2024 · smart-breed-ai.streamlit.app</span>
+          </div>
+          <ul>
+            <li>Fine-tuned <strong>MobileNetV2</strong> (TensorFlow) on a custom dataset to classify <strong>20+ Indian cattle breeds</strong> from a single photo with high accuracy</li>
+            <li>Deployed as a <strong>Streamlit web app</strong> for field use — selected for college-level Smart India Hackathon 2024 round</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">Python</span><span class="tag">TensorFlow</span><span class="tag">MobileNetV2</span>
+            <span class="tag">OpenCV</span><span class="tag">Streamlit</span>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-header">
+            <span class="item-title">Read Bharat — Hindi Transliteration Tool</span>
+            <span class="item-meta">In Progress · transliterate-project.vercel.app</span>
+          </div>
+          <ul>
+            <li>Building real-time <strong>Hindi ↔ Roman transliteration</strong> web app supporting 10+ Indian languages using custom rule-based NLP engine + ML post-processing via FastAPI</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">React</span><span class="tag">Python</span><span class="tag">FastAPI</span>
+            <span class="tag">NLP</span><span class="tag">Vercel</span>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-header">
+            <span class="item-title">No Chalant — Social Media SaaS MVP</span>
+            <span class="item-meta">Full-Stack</span>
+          </div>
+          <ul>
+            <li>Developed scalable <strong>social media messaging platform</strong> with real-time interactions, user authentication, and feed management using React, Node.js, and PostgreSQL</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">React</span><span class="tag">Node.js</span><span class="tag">PostgreSQL</span><span class="tag">Socket.io</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Achievements -->
+      <div class="section">
+        <h2>Achievements &amp; Certifications</h2>
+        <ul class="ach-list">
+          <li><strong>230+ LeetCode problems</strong> solved — arrays, linked lists, trees, graphs, DP, and optimization</li>
+          <li><strong>Smart India Hackathon 2024</strong> — selected for internal college-level round (Smart Cattle Breed AI project)</li>
+          <li><strong>IIT Pravartak AI Course</strong> — completed Artificial Intelligence certification (NRCF Level ~4.5)</li>
+          <li><strong>IIT Madras B.S. Data Science</strong> — one of ~15,000 students nationally enrolled in the programme</li>
+          <li>Delivered <strong>₹10,000 paid freelance project</strong> as a 2nd-year student</li>
+        </ul>
+      </div>
+
+      <!-- Languages -->
+      <div class="section">
+        <h2>Languages</h2>
+        <div class="skills-grid" style="grid-template-columns: repeat(3,1fr);">
+          <div class="skill-row"><span class="skill-cat">Tamil</span><span class="skill-val">Native</span></div>
+          <div class="skill-row"><span class="skill-cat">English</span><span class="skill-val">Fluent</span></div>
+          <div class="skill-row"><span class="skill-cat">Hindi</span><span class="skill-val">Fluent</span></div>
+        </div>
+      </div>
+
+    </div><!-- /body -->
+
+    <!-- Footer -->
+    <div class="paper-footer">
+      <span>motisanjay04@gmail.com · +91 86106 32662</span>
+      <span>github.com/sanjayrockerz · leetcode.com/u/sanjay304</span>
+    </div>
+
+  </div><!-- /paper -->
+
+</body>
+</html>

@@ -1,0 +1,210 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Google Fonts already loaded via index.html ── */
+@layer base {
+  :root {
+    --bg-primary:   #0a0a0f;
+    --bg-secondary: #111118;
+    --bg-card:      #151520;
+    --border:       #1e2030;
+    --cyan:         #06b6d4;
+    --cyan-dim:     rgba(6, 182, 212, 0.12);
+    --text-1:       #f1f5f9;
+    --text-2:       #94a3b8;
+    --text-3:       #475569;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply bg-surface-950 text-surface-100 font-sans;
+    background-color: var(--bg-primary);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  * {
+    @apply border-surface-800;
+    box-sizing: border-box;
+  }
+
+  ::selection {
+    background: rgba(6, 182, 212, 0.3);
+    color: #f1f5f9;
+  }
+
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--cyan);
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  /* ── Section layout ── */
+  .section-container {
+    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-header {
+    @apply text-center mb-16;
+  }
+
+  .section-eyebrow {
+    @apply inline-block font-mono text-brand-400 text-[11px] tracking-[0.22em] uppercase
+           mb-3 px-3 py-1 rounded-full border border-brand-400/20 bg-brand-400/5;
+  }
+
+  .section-title {
+    @apply text-3xl sm:text-4xl font-bold text-surface-50 mb-4
+           bg-gradient-to-r from-surface-50 to-surface-300
+           bg-clip-text text-transparent;
+  }
+
+  .section-subtitle {
+    @apply text-surface-400 text-base sm:text-lg max-w-2xl mx-auto;
+  }
+
+  /* ── Buttons ── */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm
+           bg-brand-500 text-white hover:bg-brand-400
+           transition-all duration-200 shadow-lg shadow-brand-500/20
+           hover:shadow-brand-400/30 hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm
+           border border-brand-500/40 text-brand-400 bg-brand-500/5
+           hover:bg-brand-500/15 hover:border-brand-400
+           transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-sm
+           text-surface-400 hover:text-surface-100 hover:bg-surface-800/50
+           transition-all duration-200;
+  }
+
+  /* ── Cards ── */
+  .card {
+    @apply rounded-2xl border border-surface-800 bg-surface-900/40
+           backdrop-blur-sm transition-all duration-300;
+  }
+
+  .card-hover {
+    @apply hover:border-brand-500/30 hover:bg-surface-900/70
+           hover:shadow-xl hover:shadow-brand-500/5 hover:-translate-y-1;
+  }
+
+  /* ── Tech tags ── */
+  .tech-tag {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-mono
+           font-medium border border-surface-700 bg-surface-800/60
+           text-surface-300 transition-colors duration-200;
+  }
+
+  /* ── Status badges ── */
+  .badge-production {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold
+           bg-emerald-500/10 text-emerald-400 border border-emerald-500/20;
+  }
+  .badge-live {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold
+           bg-cyan-500/10 text-cyan-400 border border-cyan-500/20;
+  }
+  .badge-sih {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold
+           bg-violet-500/10 text-violet-400 border border-violet-500/20;
+  }
+  .badge-progress {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold
+           bg-amber-500/10 text-amber-400 border border-amber-500/20;
+  }
+
+  /* ── Glow effects ── */
+  .glow-cyan {
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.3), 0 0 60px rgba(6, 182, 212, 0.1);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #67e8f9 0%, #06b6d4 45%, #818cf8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Animated shimmer for the hero name */
+  .text-shimmer {
+    background: linear-gradient(
+      120deg,
+      #67e8f9   0%,
+      #22d3ee  22%,
+      #f8fafc  42%,
+      #22d3ee  62%,
+      #818cf8  82%,
+      #a78bfa 100%
+    );
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmerGrad 4s ease-in-out infinite;
+  }
+
+  /* ── Terminal ── */
+  .terminal-window {
+    @apply rounded-xl border border-surface-700/50 bg-surface-950/90
+           backdrop-blur shadow-2xl overflow-hidden font-mono text-sm;
+  }
+
+  .terminal-bar {
+    @apply flex items-center gap-2 px-4 py-3 bg-surface-900/80
+           border-b border-surface-800;
+  }
+
+  .terminal-dot {
+    @apply w-3 h-3 rounded-full;
+  }
+}
+
+@layer utilities {
+  .bg-grid {
+    background-image: linear-gradient(rgba(6,182,212,0.04) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(6,182,212,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .bg-radial-brand {
+    background: radial-gradient(ellipse 80% 60% at 50% -20%, rgba(6,182,212,0.15), transparent);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@keyframes shimmerGrad {
+  0%, 100% { background-position: 0%   50%; }
+  50%       { background-position: 100% 50%; }
+}
